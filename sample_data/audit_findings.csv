@@ -1,0 +1,16 @@
+id,date,category,finding,severity,status,control,description
+1,2025-01-15,Compliance,Access control policy not enforced,High,Non-Compliant,AC-2,User accounts not reviewed quarterly as required by policy
+2,2025-01-15,Security,Missing MFA on admin accounts,Critical,Failed,IA-2,Multi-factor authentication not enabled for 12 administrator accounts
+3,2025-02-01,Financial,Expense approvals lacking documentation,Medium,Incomplete,FM-3,23% of expense reports over $5000 missing required manager approval
+4,2025-02-01,Operational,Backup procedures not tested,High,Non-Compliant,CP-9,Disaster recovery backups have not been tested in 8 months
+5,2025-02-15,Compliance,Training records incomplete,Medium,Overdue,AT-2,42 employees have not completed annual security awareness training
+6,2025-03-01,Security,Vulnerability scan gaps,High,Failed,RA-5,Monthly vulnerability scans not performed for 3 consecutive months
+7,2025-03-01,Quality,Code review process deviation,Low,Incomplete,SA-11,15% of code changes bypassed required peer review process
+8,2025-03-15,Financial,Vendor contract review overdue,Medium,Overdue,SA-4,8 vendor contracts past renewal date without security assessment
+9,2025-04-01,Compliance,Data retention policy violation,High,Non-Compliant,SI-12,Customer PII retained beyond 2-year policy maximum
+10,2025-04-01,Security,Encryption standards not met,Critical,Failed,SC-13,Database at rest encryption using deprecated AES-128 instead of AES-256
+11,2025-04-15,Operational,Incident response plan outdated,Medium,Incomplete,IR-1,Incident response plan last updated 14 months ago
+12,2025-05-01,HR / People,Background check gaps,High,Non-Compliant,PS-3,New contractor onboarding missing required background verification
+13,2025-05-01,Quality,Test coverage below threshold,Low,Incomplete,SA-11,Unit test coverage at 62% against 80% target
+14,2025-05-15,Compliance,Regulatory filing deadline missed,Critical,Failed,AU-6,Q1 SOX compliance report submitted 12 days past deadline
+15,2025-06-01,Security,Network segmentation gaps,High,Non-Compliant,SC-7,Production and development networks share 3 common subnets

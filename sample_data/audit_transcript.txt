@@ -1,0 +1,48 @@
+INTERNAL AUDIT COMMITTEE MEETING TRANSCRIPT
+Date: May 15, 2025
+Attendees: Sarah Chen (Chief Audit Executive), Mark Rodriguez (VP Compliance),
+           Lisa Park (CISO), James Wu (CFO), David Kim (COO)
+
+Sarah Chen: Good morning everyone. Let's begin with the quarterly audit review. I want to start with the most critical findings from this quarter.
+
+The access control situation remains our biggest risk area. We've identified that user access reviews are not being completed quarterly as required. This is a non-compliance issue that has persisted for two quarters now.
+
+Mark Rodriguez: I agree, Sarah. On the compliance front, we also need to address the training gap. We have 42 employees who haven't completed their annual security awareness training. This is overdue and puts us at risk for the upcoming regulatory examination.
+
+Lisa Park: From a security perspective, I need to escalate two critical issues. First, we discovered that 12 administrator accounts lack multi-factor authentication. This is a severe gap in our authentication controls. Second, our monthly vulnerability scans haven't been performed for three consecutive months due to staffing changes.
+
+Action item: Lisa to implement MFA for all admin accounts by June 30, 2025.
+Action item: Hire additional security analyst to resume vulnerability scanning by June 15.
+
+James Wu: On the financial side, we're seeing a pattern of incomplete expense documentation. About 23% of expense reports over $5,000 are missing the required manager approval. We need to strengthen our approval workflow.
+
+Follow-up: James to implement automated approval routing in the expense management system.
+
+David Kim: Operationally, I'm concerned about our disaster recovery readiness. Our backup procedures haven't been tested in 8 months. If we had a major incident, I'm not confident we could recover within our stated RTO of 4 hours.
+
+Sarah Chen: That's a significant risk. David, can you schedule a full DR test within the next 30 days?
+
+Action item: David to schedule and execute disaster recovery test by June 15.
+
+Lisa Park: I also want to flag the network segmentation issue. Our production and development environments share three common subnets. This deviation from our architecture standards needs to be remediated. It's a high-risk finding.
+
+Mark Rodriguez: Regarding the data retention violation — we found customer PII being retained beyond our 2-year policy maximum. This is a regulatory compliance gap that could result in fines. We should prioritize this remediation.
+
+Recommendation: Implement automated data lifecycle management to enforce retention policies.
+Recommendation: Conduct a comprehensive data mapping exercise to identify all PII storage locations.
+
+Sarah Chen: Let me summarize the priority items:
+1. Critical: MFA implementation for admin accounts - must complete by end of Q2
+2. Critical: Resume vulnerability scanning program immediately
+3. High: Complete access control review backlog
+4. High: Network segmentation remediation
+5. High: Data retention compliance fix
+6. Medium: DR backup testing
+7. Medium: Training completion for overdue employees
+
+The overall risk posture has deteriorated compared to last quarter. We had 5 high or critical findings last quarter, and now we have 7. We need to reverse this trend.
+
+Next step: Schedule follow-up meeting in 30 days to review remediation progress.
+Todo: Sarah to prepare board-level risk summary report by May 30.
+
+Meeting adjourned at 11:45 AM.

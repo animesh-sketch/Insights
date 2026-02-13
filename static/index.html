@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights Generator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Insights Generator</h1>
+    <p class="subtitle">Upload audit data &amp; transcripts. Generate structured insights.</p>
+  </header>
+
+  <main>
+    <!-- ── Upload Section ── -->
+    <section class="upload-section">
+      <div class="upload-card">
+        <div class="upload-icon">&#128202;</div>
+        <h2>Audit Data</h2>
+        <p>CSV, JSON, or XLSX files</p>
+        <label class="file-input-label">
+          Choose Files
+          <input type="file" id="auditFiles" multiple accept=".csv,.json,.xlsx" />
+        </label>
+        <div id="auditFileList" class="file-list"></div>
+      </div>
+
+      <div class="upload-card">
+        <div class="upload-icon">&#128196;</div>
+        <h2>Transcripts</h2>
+        <p>TXT, MD, JSON, or CSV files</p>
+        <label class="file-input-label">
+          Choose Files
+          <input type="file" id="transcriptFiles" multiple accept=".txt,.md,.json,.csv" />
+        </label>
+        <div id="transcriptFileList" class="file-list"></div>
+      </div>
+    </section>
+
+    <!-- ── Action Buttons ── -->
+    <section class="actions">
+      <button id="generateBtn" class="btn-primary" disabled>Generate Insights</button>
+      <button id="resetBtn" class="btn-secondary">Reset</button>
+    </section>
+
+    <!-- ── Loading ── -->
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Analyzing data and generating insights...</p>
+    </div>
+
+    <!-- ── Dashboard ── -->
+    <section id="dashboard" class="dashboard hidden">
+
+      <!-- Risk Score -->
+      <div class="dash-row">
+        <div class="card risk-card" id="riskCard">
+          <h3>Risk Score</h3>
+          <div class="risk-score-display">
+            <div class="score-circle" id="scoreCircle">
+              <span id="scoreValue">--</span>
+            </div>
+            <span class="risk-level" id="riskLevel">--</span>
+          </div>
+          <div class="risk-indicators" id="riskIndicators"></div>
+        </div>
+
+        <div class="card">
+          <h3>Summary</h3>
+          <div id="summaryContent" class="summary-content"></div>
+        </div>
+
+        <div class="card">
+          <h3>Severity Distribution</h3>
+          <canvas id="severityChart" width="300" height="200"></canvas>
+        </div>
+      </div>
+
+      <!-- Category Breakdown -->
+      <div class="dash-row">
+        <div class="card wide">
+          <h3>Category Breakdown</h3>
+          <canvas id="categoryChart" width="600" height="250"></canvas>
+        </div>
+      </div>
+
+      <!-- Trend Data -->
+      <div class="dash-row" id="trendRow">
+        <div class="card wide">
+          <h3>Trend Over Time</h3>
+          <canvas id="trendChart" width="600" height="250"></canvas>
+        </div>
+      </div>
+
+      <!-- Key Findings -->
+      <div class="dash-row">
+        <div class="card wide">
+          <h3>Key Findings</h3>
+          <div id="findingsTable" class="table-container"></div>
+        </div>
+      </div>
+
+      <!-- Compliance Gaps -->
+      <div class="dash-row">
+        <div class="card wide">
+          <h3>Compliance Gaps</h3>
+          <div id="gapsTable" class="table-container"></div>
+        </div>
+      </div>
+
+      <!-- Themes -->
+      <div class="dash-row">
+        <div class="card">
+          <h3>Top Themes</h3>
+          <div id="themesList" class="themes-list"></div>
+        </div>
+
+        <div class="card">
+          <h3>Action Items</h3>
+          <div id="actionsList" class="actions-list"></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
