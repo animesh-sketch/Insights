@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Merger</title>
+  <link rel="stylesheet" href="/static/pdf_merger.css" />
+</head>
+<body>
+  <header>
+    <h1>PDF Merger</h1>
+    <p class="subtitle">Upload, reorder, and merge multiple PDFs into one</p>
+    <nav class="nav-link"><a href="/">Back to Insights</a></nav>
+  </header>
+
+  <main>
+    <!-- Drop Zone -->
+    <div id="dropZone" class="drop-zone">
+      <div class="drop-icon">&#128196;</div>
+      <p class="drop-text">Drag &amp; drop PDF files here</p>
+      <p class="drop-subtext">or</p>
+      <label class="file-input-label">
+        Browse Files
+        <input type="file" id="fileInput" accept=".pdf" multiple />
+      </label>
+    </div>
+
+    <!-- File List -->
+    <div id="fileListSection" class="file-list-section hidden">
+      <div class="file-list-header">
+        <h2>Uploaded PDFs</h2>
+        <span id="fileCount" class="file-count">0 files</span>
+      </div>
+      <p class="reorder-hint">Drag to reorder. Files merge top to bottom.</p>
+      <ul id="fileList" class="file-list"></ul>
+
+      <div class="merge-controls">
+        <div class="output-name-group">
+          <label for="outputName">Output filename:</label>
+          <input type="text" id="outputName" value="merged.pdf" placeholder="merged.pdf" />
+        </div>
+        <div class="merge-buttons">
+          <button id="mergeBtn" class="btn-primary" disabled>Merge PDFs</button>
+          <button id="clearBtn" class="btn-secondary">Clear All</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div id="progressSection" class="progress-section hidden">
+      <div class="spinner"></div>
+      <p>Merging your PDFs...</p>
+    </div>
+
+    <!-- Result -->
+    <div id="resultSection" class="result-section hidden">
+      <div class="result-icon">&#9989;</div>
+      <h2>Merge Complete!</h2>
+      <p id="resultInfo"></p>
+      <a id="downloadLink" class="btn-primary download-btn" href="#" download>Download Merged PDF</a>
+      <button id="startOverBtn" class="btn-secondary">Start Over</button>
+    </div>
+  </main>
+
+  <script src="/static/pdf_merger.js"></script>
+</body>
+</html>

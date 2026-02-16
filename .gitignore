@@ -2,6 +2,8 @@ __pycache__/
 *.pyc
 .env
 uploads/
+pdf_uploads/
+pdf_output/
 venv/
 *.egg-info/
 dist/
