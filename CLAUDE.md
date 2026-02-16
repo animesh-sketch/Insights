@@ -4,15 +4,16 @@
 
 Audit data analysis web application. Users upload audit data files (CSV, JSON, XLSX) and transcripts (TXT, MD, JSON, CSV), then generate a structured dashboard with risk scoring, compliance gap analysis, category breakdowns, and actionable recommendations.
 
-**Stack:** Python/Flask backend, vanilla JavaScript frontend (no frameworks), HTML5 Canvas charting, CSS dark theme.
+**Stack:** Python/Flask backend, vanilla JavaScript frontend (no frameworks), HTML5 Canvas charting, CSS dark theme. Streamlit + Plotly dashboard as an alternative UI.
 
 ## Repository Structure
 
 ```
 .
 ├── app.py                  # Flask application - routes and file upload handling
+├── streamlit_app.py        # Streamlit dashboard - upload, metrics, Plotly charts
 ├── insights_engine.py      # Core analysis engine (InsightsEngine class)
-├── requirements.txt        # Python dependencies (flask, pandas, werkzeug)
+├── requirements.txt        # Python dependencies (flask, pandas, werkzeug, streamlit, plotly)
 ├── static/
 │   ├── index.html          # SPA entry point - upload form and dashboard layout
 │   ├── app.js              # Frontend logic - file handling, API calls, Canvas charts
@@ -29,12 +30,16 @@ Audit data analysis web application. Users upload audit data files (CSV, JSON, X
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the development server
+# Run the Flask development server
 python app.py
 # Serves on http://localhost:5000
+
+# Or run the Streamlit dashboard
+streamlit run streamlit_app.py
+# Serves on http://localhost:8501
 ```
 
-No build step required. The frontend is plain HTML/JS/CSS served directly by Flask.
+No build step required. The Flask frontend is plain HTML/JS/CSS. The Streamlit app is a standalone alternative dashboard.
 
 ## API Endpoints
 
@@ -74,6 +79,15 @@ No build step required. The frontend is plain HTML/JS/CSS served directly by Fla
 - `esc()` function used for HTML escaping user-provided content
 - Two-column upload grid, responsive to single-column at 768px breakpoint
 
+### Streamlit Dashboard (`streamlit_app.py`)
+- Alternative dashboard using Streamlit + Plotly for interactive charts
+- CSV upload for audit data and transcripts with data preview
+- Sidebar column-mapping: auto-detects agent/score columns, user can override
+- Key metrics: Total Calls, Average Audit Score, Total Agents
+- Agent-wise average score horizontal bar chart (Plotly, RdYlGn color scale)
+- Score distribution histogram
+- Severity labels auto-converted to numeric scores via `SEVERITY_SCORE` mapping
+
 ## Key Conventions
 
 - **Python style:** Double-quoted strings, module docstrings, method docstrings for public/route functions
@@ -91,5 +105,5 @@ No build step required. The frontend is plain HTML/JS/CSS served directly by Fla
 - **No linting/formatting config.** No pylintrc, .eslintrc, prettier, or similar.
 - **Debug mode is on.** `app.run(debug=True)` in app.py - not production-ready.
 - **No database.** All analysis is in-memory; uploaded files are the only persistence.
-- **`pandas` is listed in requirements.txt but not imported or used** in the current code.
+- **`pandas` is used by `streamlit_app.py`** for CSV loading and aggregation; not used by the Flask app.
 - **The `uploads/` directory** is created at startup and gitignored. Files persist there until `/api/reset` is called.
