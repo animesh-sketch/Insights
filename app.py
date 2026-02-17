@@ -1,9 +1,11 @@
 """Insights Generator - Upload audit data & transcripts, generate structured dashboard insights."""
 
 import os
+import io
 import json
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
+from PyPDF2 import PdfMerger
 from insights_engine import InsightsEngine
 
 app = Flask(__name__, static_folder="static")
@@ -80,6 +82,44 @@ def reset():
     for f in os.listdir(upload_dir):
         os.remove(os.path.join(upload_dir, f))
     return jsonify({"status": "ok"})
+
+
+@app.route("/pdf-merger")
+def pdf_merger_page():
+    return send_from_directory("static", "pdf_merger.html")
+
+
+@app.route("/api/merge-pdfs", methods=["POST"])
+def merge_pdfs():
+    """Merge uploaded PDF files into a single PDF."""
+    if "pdf_files" not in request.files:
+        return jsonify({"error": "No PDF files provided."}), 400
+
+    files = request.files.getlist("pdf_files")
+    pdf_files = [f for f in files if f.filename and f.filename.lower().endswith(".pdf")]
+
+    if len(pdf_files) < 2:
+        return jsonify({"error": "Please upload at least 2 PDF files to merge."}), 400
+
+    merger = PdfMerger()
+    try:
+        for f in pdf_files:
+            merger.append(f.stream)
+
+        output = io.BytesIO()
+        merger.write(output)
+        merger.close()
+        output.seek(0)
+
+        return send_file(
+            output,
+            mimetype="application/pdf",
+            as_attachment=True,
+            download_name="merged.pdf",
+        )
+    except Exception as e:
+        merger.close()
+        return jsonify({"error": f"Failed to merge PDFs: {str(e)}"}), 500
 
 
 if __name__ == "__main__":

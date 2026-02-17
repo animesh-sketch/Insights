@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Merger - Insights Generator</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/pdf_merger.css">
+</head>
+<body>
+  <nav class="topnav">
+    <a href="/" class="nav-link">Insights</a>
+    <a href="/pdf-merger" class="nav-link active">PDF Merger</a>
+  </nav>
+
+  <header>
+    <h1>PDF Merger</h1>
+    <p class="subtitle">Drag, drop &amp; reorder your PDFs. Merge them into one file.</p>
+  </header>
+
+  <main>
+    <!-- Drop Zone -->
+    <section class="drop-zone" id="dropZone">
+      <div class="drop-zone-content">
+        <div class="drop-icon" id="dropIcon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="18" x2="12" y2="12"/>
+            <line x1="9" y1="15" x2="12" y2="12"/>
+            <line x1="15" y1="15" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <p class="drop-text">Drag &amp; drop PDF files here</p>
+        <p class="drop-subtext">or</p>
+        <label class="file-input-label">
+          Browse Files
+          <input type="file" id="pdfInput" multiple accept=".pdf" />
+        </label>
+      </div>
+    </section>
+
+    <!-- File List -->
+    <section id="fileListSection" class="file-list-section hidden">
+      <div class="file-list-header">
+        <h2>Files to Merge</h2>
+        <span class="file-count" id="fileCount">0 files</span>
+      </div>
+      <p class="reorder-hint">Drag items to reorder. Files merge top to bottom.</p>
+      <ul id="fileList" class="pdf-file-list"></ul>
+    </section>
+
+    <!-- Actions -->
+    <section class="actions" id="mergeActions" style="display:none;">
+      <button id="mergeBtn" class="btn-primary">Merge PDFs</button>
+      <button id="clearBtn" class="btn-secondary">Clear All</button>
+    </section>
+
+    <!-- Progress -->
+    <div id="progress" class="progress-bar-container hidden">
+      <div class="progress-label">Merging PDFs...</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div id="successMsg" class="success-msg hidden">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span>Merged PDF downloaded successfully!</span>
+    </div>
+  </main>
+
+  <script src="/static/pdf_merger.js"></script>
+</body>
+</html>

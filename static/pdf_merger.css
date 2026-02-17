@@ -1,0 +1,235 @@
+/* ── PDF Merger Styles ── */
+
+/* ── Top Navigation ── */
+.topnav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 20px 0;
+}
+.nav-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.nav-link:hover {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+.nav-link.active {
+  color: var(--accent-light);
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
+/* ── Drop Zone ── */
+.drop-zone {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 48px 32px;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+.drop-zone:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+.drop-zone.drag-over {
+  border-color: var(--accent-light);
+  background: rgba(99, 102, 241, 0.08);
+  transform: scale(1.01);
+}
+
+.drop-zone-content { pointer-events: none; }
+.drop-zone-content .file-input-label { pointer-events: auto; }
+
+.drop-icon {
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.drop-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.drop-subtext {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+/* ── File List Section ── */
+.file-list-section {
+  margin-bottom: 24px;
+}
+.file-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.file-list-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.file-count {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  background: var(--surface-2);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.reorder-hint {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+.pdf-file-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pdf-file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+  cursor: grab;
+}
+.pdf-file-item:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+.pdf-file-item.dragging {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+.pdf-file-item.drag-target {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.drag-handle {
+  color: var(--text-dim);
+  flex-shrink: 0;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+}
+.drag-handle:active { cursor: grabbing; }
+
+.file-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.file-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.file-name {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.remove-btn:hover {
+  color: var(--red);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* ── Progress Bar ── */
+.progress-bar-container {
+  text-align: center;
+  margin: 24px 0;
+}
+.progress-label {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* ── Success Message ── */
+.success-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+  margin-top: 20px;
+  color: var(--green);
+  font-weight: 500;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .drop-zone { padding: 32px 20px; }
+  .pdf-file-item { padding: 10px 12px; gap: 8px; }
+  .file-name { font-size: 0.8rem; }
+}
