@@ -11,6 +11,7 @@ from insights_engine import InsightsEngine
 app = Flask(__name__, static_folder="static")
 app.config["UPLOAD_FOLDER"] = os.path.join(os.path.dirname(__file__), "uploads")
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50MB
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable static file caching
 
 ALLOWED_AUDIT_EXT = {".csv", ".json", ".xlsx"}
 ALLOWED_TRANSCRIPT_EXT = {".txt", ".md", ".json", ".csv"}
