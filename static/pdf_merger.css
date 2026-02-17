@@ -38,6 +38,7 @@
   transition: all 0.25s ease;
   cursor: pointer;
   margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 .drop-zone:hover {
   border-color: var(--accent);
@@ -45,7 +46,7 @@
 }
 .drop-zone.drag-over {
   border-color: var(--accent-light);
-  background: rgba(99, 102, 241, 0.08);
+  background: rgba(236, 72, 153, 0.08);
   transform: scale(1.01);
 }
 
@@ -111,6 +112,7 @@
   margin-bottom: 8px;
   transition: all 0.2s;
   cursor: grab;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 .pdf-file-item:hover {
   border-color: var(--accent);
@@ -122,7 +124,7 @@
 }
 .pdf-file-item.drag-target {
   border-color: var(--accent-light);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.2);
 }
 
 .drag-handle {

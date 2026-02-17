@@ -153,18 +153,18 @@ function renderSeverityChart(dist) {
   ctx.clearRect(0, 0, w, h);
 
   const colors = {
-    Critical: "#ef4444",
-    High: "#f97316",
-    Medium: "#eab308",
-    Low: "#22c55e",
-    Info: "#6366f1",
+    Critical: "#dc2626",
+    High: "#ea580c",
+    Medium: "#ca8a04",
+    Low: "#16a34a",
+    Info: "#ec4899",
   };
 
   const entries = Object.entries(dist).filter(([, v]) => v > 0);
   const total = entries.reduce((s, [, v]) => s + v, 0);
 
   if (total === 0) {
-    ctx.fillStyle = "#8b8fa8";
+    ctx.fillStyle = "#6b7280";
     ctx.font = "14px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("No severity data", w / 2, h / 2);
@@ -182,17 +182,17 @@ function renderSeverityChart(dist) {
     const y = startY + i * (barH + gap);
     const barW = (val / total) * barMaxW;
 
-    ctx.fillStyle = "#8b8fa8";
+    ctx.fillStyle = "#6b7280";
     ctx.font = "12px sans-serif";
     ctx.textAlign = "right";
     ctx.fillText(label, labelW - 8, y + barH / 2 + 4);
 
-    ctx.fillStyle = colors[label] || "#6366f1";
+    ctx.fillStyle = colors[label] || "#ec4899";
     ctx.beginPath();
     roundRect(ctx, labelW, y, Math.max(barW, 4), barH, 4);
     ctx.fill();
 
-    ctx.fillStyle = "#e4e6f0";
+    ctx.fillStyle = "#1f2937";
     ctx.textAlign = "left";
     ctx.font = "11px sans-serif";
     ctx.fillText(val, labelW + barW + 8, y + barH / 2 + 4);
@@ -219,19 +219,19 @@ function renderCategoryChart(categories) {
     const y = chartH - barH;
 
     const gradient = ctx.createLinearGradient(x, y, x, chartH);
-    gradient.addColorStop(0, "#818cf8");
-    gradient.addColorStop(1, "#4f46e5");
+    gradient.addColorStop(0, "#f472b6");
+    gradient.addColorStop(1, "#be185d");
     ctx.fillStyle = gradient;
     ctx.beginPath();
     roundRect(ctx, x, y, barW, barH, 4);
     ctx.fill();
 
-    ctx.fillStyle = "#e4e6f0";
+    ctx.fillStyle = "#1f2937";
     ctx.font = "12px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText(val, x + barW / 2, y - 6);
 
-    ctx.fillStyle = "#8b8fa8";
+    ctx.fillStyle = "#6b7280";
     ctx.font = "10px sans-serif";
     ctx.save();
     ctx.translate(x + barW / 2, chartH + 10);
@@ -258,7 +258,7 @@ function renderTrend(trend) {
 
   const periods = trend.periods;
   if (periods.length < 2) {
-    ctx.fillStyle = "#8b8fa8";
+    ctx.fillStyle = "#6b7280";
     ctx.font = "14px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("Not enough data points for trend", w / 2, h / 2);
@@ -272,7 +272,7 @@ function renderTrend(trend) {
   const chartH = h - padY * 2;
 
   // Draw line
-  ctx.strokeStyle = "#818cf8";
+  ctx.strokeStyle = "#ec4899";
   ctx.lineWidth = 2.5;
   ctx.beginPath();
   periods.forEach((p, i) => {
@@ -288,18 +288,18 @@ function renderTrend(trend) {
     const x = padX + (i / (periods.length - 1)) * chartW;
     const y = padY + chartH - (p.count / max) * chartH;
 
-    ctx.fillStyle = "#6366f1";
+    ctx.fillStyle = "#ec4899";
     ctx.beginPath();
     ctx.arc(x, y, 4, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = "#e4e6f0";
+    ctx.fillStyle = "#1f2937";
     ctx.font = "10px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText(p.count, x, y - 10);
 
     if (i % Math.ceil(periods.length / 8) === 0 || i === periods.length - 1) {
-      ctx.fillStyle = "#8b8fa8";
+      ctx.fillStyle = "#6b7280";
       ctx.fillText(p.period, x, padY + chartH + 16);
     }
   });
