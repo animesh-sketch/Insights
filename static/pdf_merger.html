@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="/static/pdf_merger.css">
 </head>
 <body>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">&#9790;</button>
+
   <nav class="topnav">
     <a href="/" class="nav-link">Insights</a>
     <a href="/pdf-merger" class="nav-link active">PDF Merger</a>
@@ -73,6 +79,10 @@
       <span>Merged PDF downloaded successfully!</span>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <p>Insights Generator &mdash; Built with <span class="footer-heart">&#9829;</span> for better audits</p>
+  </footer>
 
   <script src="/static/pdf_merger.js"></script>
 </body>

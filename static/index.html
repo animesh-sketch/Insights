@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="/static/pdf_merger.css">
 </head>
 <body>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">&#9790;</button>
+
   <nav class="topnav">
     <a href="/" class="nav-link active">Insights</a>
     <a href="/pdf-merger" class="nav-link">PDF Merger</a>
@@ -102,7 +108,24 @@
       <!-- Key Findings -->
       <div class="dash-row">
         <div class="card wide">
-          <h3>Key Findings</h3>
+          <h3>
+            Key Findings
+            <button class="btn-icon" id="exportFindingsBtn" title="Export as CSV">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </button>
+          </h3>
+          <div class="toolbar">
+            <input type="text" class="search-input" id="findingsSearch" placeholder="Search findings..." />
+            <select class="filter-select" id="findingsSourceFilter">
+              <option value="all">All Sources</option>
+              <option value="audit">Audit</option>
+              <option value="transcript">Transcript</option>
+            </select>
+          </div>
           <div id="findingsTable" class="table-container"></div>
         </div>
       </div>
@@ -110,12 +133,21 @@
       <!-- Compliance Gaps -->
       <div class="dash-row">
         <div class="card wide">
-          <h3>Compliance Gaps</h3>
+          <h3>
+            Compliance Gaps
+            <button class="btn-icon" id="exportGapsBtn" title="Export as CSV">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </button>
+          </h3>
           <div id="gapsTable" class="table-container"></div>
         </div>
       </div>
 
-      <!-- Themes -->
+      <!-- Themes & Actions -->
       <div class="dash-row">
         <div class="card">
           <h3>Top Themes</h3>
@@ -123,13 +155,26 @@
         </div>
 
         <div class="card">
-          <h3>Action Items</h3>
+          <h3>
+            Action Items
+            <button class="btn-icon" id="exportActionsBtn" title="Export as CSV">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </button>
+          </h3>
           <div id="actionsList" class="actions-list"></div>
         </div>
       </div>
 
     </section>
   </main>
+
+  <footer class="site-footer">
+    <p>Insights Generator &mdash; Built with <span class="footer-heart">&#9829;</span> for better audits</p>
+  </footer>
 
   <script src="/static/app.js"></script>
 </body>

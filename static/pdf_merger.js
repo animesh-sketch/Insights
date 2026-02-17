@@ -15,6 +15,33 @@ const successMsg = document.getElementById("successMsg");
 let pdfFiles = [];
 let dragSrcIndex = null;
 
+// ── Toast Notifications ─────────────────────────────────────────
+function showToast(message, type = "info") {
+  const container = document.getElementById("toastContainer");
+  const toast = document.createElement("div");
+  toast.className = "toast toast-" + type;
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+// ── Dark / Light Mode Toggle ────────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem("theme");
+  if (saved === "dark") document.body.classList.add("dark");
+  updateToggleIcon();
+}
+function updateToggleIcon() {
+  const btn = document.getElementById("themeToggle");
+  if (btn) btn.innerHTML = document.body.classList.contains("dark") ? "&#9788;" : "&#9790;";
+}
+initTheme();
+document.getElementById("themeToggle")?.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  updateToggleIcon();
+});
+
 // ── Drop Zone ────────────────────────────────────────────────────
 
 dropZone.addEventListener("dragover", (e) => {
@@ -200,11 +227,12 @@ mergeBtn.addEventListener("click", async () => {
     setTimeout(() => {
       progress.classList.add("hidden");
       successMsg.classList.remove("hidden");
+      showToast("PDFs merged successfully!", "success");
     }, 400);
   } catch (err) {
     clearInterval(interval);
     progress.classList.add("hidden");
-    alert("Error: " + err.message);
+    showToast("Error: " + err.message, "error");
   } finally {
     mergeBtn.disabled = pdfFiles.length < 2;
     clearBtn.disabled = false;
