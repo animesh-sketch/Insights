@@ -3,127 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Insights Generator</title>
+  <title>BloomCart - Fresh Flowers Delivered</title>
   <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Insights Generator</h1>
-    <p class="subtitle">Upload audit data &amp; transcripts. Generate structured insights.</p>
-  </header>
 
-  <main>
-    <!-- ── Upload Section ── -->
-    <section class="upload-section">
-      <div class="upload-card">
-        <div class="upload-icon">&#128202;</div>
-        <h2>Audit Data</h2>
-        <p>CSV, JSON, or XLSX files</p>
-        <label class="file-input-label">
-          Choose Files
-          <input type="file" id="auditFiles" multiple accept=".csv,.json,.xlsx" />
-        </label>
-        <div id="auditFileList" class="file-list"></div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">&#127801;</span>
+        <span class="logo-text">BloomCart</span>
+      </a>
+      <div class="nav-links">
+        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
+      <button class="cart-btn" id="cartToggle">
+        <span class="cart-icon">&#128722;</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
 
-      <div class="upload-card">
-        <div class="upload-icon">&#128196;</div>
-        <h2>Transcripts</h2>
-        <p>TXT, MD, JSON, or CSV files</p>
-        <label class="file-input-label">
-          Choose Files
-          <input type="file" id="transcriptFiles" multiple accept=".txt,.md,.json,.csv" />
-        </label>
-        <div id="transcriptFileList" class="file-list"></div>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Fresh Flowers,<br>Delivered with Love</h1>
+      <p class="hero-subtitle">Handcrafted bouquets and arrangements for every occasion. Order today and brighten someone's day.</p>
+      <a href="#shop" class="btn btn-primary btn-lg">Shop Now</a>
+    </div>
+    <div class="hero-decoration"></div>
+  </section>
 
-    <!-- ── Action Buttons ── -->
-    <section class="actions">
-      <button id="generateBtn" class="btn-primary" disabled>Generate Insights</button>
-      <button id="resetBtn" class="btn-secondary">Reset</button>
-    </section>
+  <!-- Features -->
+  <section class="features">
+    <div class="feature">
+      <div class="feature-icon">&#127807;</div>
+      <h3>Farm Fresh</h3>
+      <p>Sourced daily from local farms</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128666;</div>
+      <h3>Same Day Delivery</h3>
+      <p>Order before 2 PM for same-day</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9829;</div>
+      <h3>Handcrafted</h3>
+      <p>Arranged by expert florists</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#127873;</div>
+      <h3>Gift Ready</h3>
+      <p>Beautiful packaging included</p>
+    </div>
+  </section>
 
-    <!-- ── Loading ── -->
-    <div id="loading" class="loading hidden">
-      <div class="spinner"></div>
-      <p>Analyzing data and generating insights...</p>
+  <!-- Shop Section -->
+  <section id="shop" class="shop-section">
+    <div class="shop-header">
+      <h2 class="section-title">Our Collection</h2>
+      <p class="section-subtitle">Browse our handpicked selection of beautiful flowers</p>
     </div>
 
-    <!-- ── Dashboard ── -->
-    <section id="dashboard" class="dashboard hidden">
+    <!-- Category Filter -->
+    <div class="category-filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="bouquets">Bouquets</button>
+      <button class="filter-btn" data-category="singles">Single Stems</button>
+      <button class="filter-btn" data-category="arrangements">Arrangements</button>
+      <button class="filter-btn" data-category="plants">Plants</button>
+    </div>
 
-      <!-- Risk Score -->
-      <div class="dash-row">
-        <div class="card risk-card" id="riskCard">
-          <h3>Risk Score</h3>
-          <div class="risk-score-display">
-            <div class="score-circle" id="scoreCircle">
-              <span id="scoreValue">--</span>
-            </div>
-            <span class="risk-level" id="riskLevel">--</span>
+    <!-- Flower Grid -->
+    <div class="flower-grid" id="flowerGrid">
+      <!-- Flowers loaded dynamically -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="about-content">
+      <h2 class="section-title">About BloomCart</h2>
+      <p>We are passionate about bringing the beauty of nature into your home. Every bouquet is carefully handcrafted by our team of expert florists using the freshest flowers sourced from local farms.</p>
+      <p>Whether it's a birthday, anniversary, or just because, our flowers are designed to make every moment special. We believe in sustainability, quality, and spreading joy one bloom at a time.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"The most beautiful roses I've ever received! Fresh and lasted over two weeks."</p>
+        <span class="testimonial-author">- Sarah M.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Same-day delivery was a lifesaver for my wife's birthday. She absolutely loved the arrangement!"</p>
+        <span class="testimonial-author">- James R.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"I order from BloomCart every month. The quality is always consistent and beautiful."</p>
+        <span class="testimonial-author">- Emily K.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-icon">&#128205;</span>
+          <div>
+            <h4>Visit Us</h4>
+            <p>123 Bloom Street, Garden City, FL 33101</p>
           </div>
-          <div class="risk-indicators" id="riskIndicators"></div>
         </div>
-
-        <div class="card">
-          <h3>Summary</h3>
-          <div id="summaryContent" class="summary-content"></div>
+        <div class="contact-item">
+          <span class="contact-icon">&#128222;</span>
+          <div>
+            <h4>Call Us</h4>
+            <p>(555) 123-BLOOM</p>
+          </div>
         </div>
-
-        <div class="card">
-          <h3>Severity Distribution</h3>
-          <canvas id="severityChart" width="300" height="200"></canvas>
-        </div>
-      </div>
-
-      <!-- Category Breakdown -->
-      <div class="dash-row">
-        <div class="card wide">
-          <h3>Category Breakdown</h3>
-          <canvas id="categoryChart" width="600" height="250"></canvas>
+        <div class="contact-item">
+          <span class="contact-icon">&#9993;</span>
+          <div>
+            <h4>Email Us</h4>
+            <p>hello@bloomcart.com</p>
+          </div>
         </div>
       </div>
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
 
-      <!-- Trend Data -->
-      <div class="dash-row" id="trendRow">
-        <div class="card wide">
-          <h3>Trend Over Time</h3>
-          <canvas id="trendChart" width="600" height="250"></canvas>
-        </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">&#127801;</span>
+        <span class="logo-text">BloomCart</span>
+        <p>Delivering happiness, one bloom at a time.</p>
       </div>
-
-      <!-- Key Findings -->
-      <div class="dash-row">
-        <div class="card wide">
-          <h3>Key Findings</h3>
-          <div id="findingsTable" class="table-container"></div>
-        </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </div>
-
-      <!-- Compliance Gaps -->
-      <div class="dash-row">
-        <div class="card wide">
-          <h3>Compliance Gaps</h3>
-          <div id="gapsTable" class="table-container"></div>
-        </div>
+      <div class="footer-links">
+        <h4>Customer Service</h4>
+        <a href="#">Delivery Info</a>
+        <a href="#">Return Policy</a>
+        <a href="#">FAQ</a>
       </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 BloomCart. All rights reserved.</p>
+    </div>
+  </footer>
 
-      <!-- Themes -->
-      <div class="dash-row">
-        <div class="card">
-          <h3>Top Themes</h3>
-          <div id="themesList" class="themes-list"></div>
-        </div>
-
-        <div class="card">
-          <h3>Action Items</h3>
-          <div id="actionsList" class="actions-list"></div>
-        </div>
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty" id="cartEmpty">
+        <span class="cart-empty-icon">&#127801;</span>
+        <p>Your cart is empty</p>
+        <a href="#shop" class="btn btn-secondary" id="startShopping">Start Shopping</a>
       </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span class="total-amount" id="cartTotal">$0.00</span>
+      </div>
+      <button class="btn btn-primary btn-full" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="btn btn-link" id="clearCartBtn">Clear Cart</button>
+    </div>
+  </aside>
 
-    </section>
-  </main>
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h2>Checkout</h2>
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="customerName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="customerEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea id="customerAddress" placeholder="Enter delivery address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Delivery Date</label>
+          <input type="date" id="deliveryDate" required>
+        </div>
+        <div class="order-summary" id="orderSummary"></div>
+        <button type="submit" class="btn btn-primary btn-full">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div class="modal-overlay" id="confirmationModal">
+    <div class="modal confirmation-modal">
+      <div class="confirmation-icon">&#10003;</div>
+      <h2>Order Confirmed!</h2>
+      <p id="confirmationMessage"></p>
+      <button class="btn btn-primary" id="confirmationClose">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">&#10003;</span>
+    <span class="toast-message" id="toastMessage"></span>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>
