@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from insights_engine import InsightsEngine
 
 app = Flask(__name__, static_folder="static")
-app.config["UPLOAD_FOLDER"] = os.path.join(os.path.dirname(__file__), "uploads")
+app.config["UPLOAD_FOLDER"] = os.path.join("/tmp", "uploads")
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50MB
 
 ALLOWED_AUDIT_EXT = {".csv", ".json", ".xlsx"}
